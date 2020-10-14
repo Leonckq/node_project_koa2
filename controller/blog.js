@@ -50,14 +50,14 @@ const updateBlog = async (id, blogData = {}) => {
   return false
 }
 
-const delBlog = (id, author) => {
+const delBlog = async (id, author) => {
   // const sql = `
   //   delete from blogs where id=${Number(id)} and author='${author}';
   // `
   const sql = `
-    delete from blogs where id=${Number(id)};
+    delete from blogs where id=${id} and author='${author}';
   `
-  const deleteData = exec(sql)
+  const deleteData = await exec(sql)
   if (deleteData.affectedRows > 0) {
     return true
   }
